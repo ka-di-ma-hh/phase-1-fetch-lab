@@ -6,6 +6,14 @@ let photUrl = document.getElementById('image').value
 let photoThumbnail = document.getElementById('thumb').value
 let PhotoTitle = document.getElementById('title').value
 
+// creating object from form input
+const formData = {
+    albumId : photoAlbum,
+    url : photUrl,
+    thumbnailUrl: photoThumbnail,
+    title: PhotoTitle
+}
+
 // Getting All Resources
 
 fetch(apiUrl)
@@ -34,7 +42,7 @@ function createPhoto(photo){
             <div>
             <button><a href=${url} target="_blank">View Image</a></button>
             </div>
-            <div class="btn"><button type="button" id="delete" onclick = "deletePhoto(${id})">Delete</button><button type="button" id="edit" onclick= " editPhoto(${albumId}, ${id})">Edit</button></div>
+            <div class="btn"><button type="button" id="delete" onclick = "deletePhoto(${id})">Delete</button><button type="button" id="edit" onclick= " editPhoto(${albumId}, ${id}, '${title}', '${url}', '${thumbnailUrl}')">Edit</button></div>
 
     `
     divCard.innerHTML = html
@@ -55,13 +63,7 @@ form.addEventListener('submit', e =>  {
     
     
 
-    // creating object from form input
-    const formData = {
-        albumId : photoAlbum,
-        url : photUrl,
-        thumbnailUrl: photoThumbnail,
-        title: PhotoTitle
-    }
+    
    
     // sending data to the server using fetch api
     fetch(apiUrl, {
@@ -93,28 +95,48 @@ function deletePhoto(id){
 
 // Editing Photo
 
-function editPhoto(albumId, id){
+function editPhoto(albumId, id, title, url, thumbnailUrl){
+
+    
    
 
     // updating form inputs
+        document.getElementById('album').value = albumId
+        document.getElementById('image').value = url
+        document.getElementById('thumb').value = thumbnailUrl
+        document.getElementById('title').value = title
 
-     photoAlbum = albumId
+    //  photoAlbum = albumId
     //  photUrl = url
     //  photoThumbnail = thumbnailUrl
     //  PhotoTitle = title
 
+    // update the data now
+
+
+
+
+
+let btn = document.getElementById('btn')
+
+btn.addEventListener('click', function(e){
+    e.preventDefault()
+
+    
+
+    fetch(`${apiUrl}/${id}`, {
+        method : "PATCH",
+        headers : {
+            "Content-Type" : "application/json",
+            "Accept" : "application/json"
+        },
+        body : JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(photo => console.log(photo))
+
+})
 
 }
 
-// fetch(`${apiUrl}/${id}`, {
-//     method : "PATCH",
-//     headers : {
-//         "Content-Type" : "application/json",
-//         "Accept" : "application/json"
-//     },
-//     body : JSON.stringify({
 
-//     })
-// })
-// .then(res => res.json())
-// .then(photo => console.log(photo))
