@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap');
+
+
+h1{
+    text-align: center;
+    font-family: "Carter One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: #2403fc;
+}
+
+#photo-wrapper{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.photo{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.photo img{
+    width: 150px;
+    height: 150px;
+}
+.photo a{
+    text-decoration: none;
+}
+
+h3{
+    font-family: "Ga Maamli", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-inputs{
+    text-align: center;
+    padding: 5px;
+}
+
+.form-inputs div{
+    padding: 5px;
+}
+
+.btn{
+    padding: 5px;
+    
+
+}
+
+#edit{
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+#edit:hover{
+    cursor: pointer;
+}
+
+#delete{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
+}
+
+#delete:hover{
+    cursor: pointer;
+}
